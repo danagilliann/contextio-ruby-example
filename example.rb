@@ -84,7 +84,7 @@ folders = cio.request(:get, "#{resource_url}/folders", {}).body
 
 puts
 puts "Listing folders"
-folders.each {|f| puts f['name']}
+folders.each {|f| puts f[('name').to_i]}
 
 #fetch a list of messages in the INBOX folder
 #GET https://api.context.io/lite/users/:id/email_accounts/:label/folders/:folder/messages
@@ -108,7 +108,7 @@ random_message_body = cio.request(:get, "#{resource_url}/folders/INBOX/messages/
 
 puts "Printing message body for email with subject '#{random_message['subject']}' with email_message_id #{random_message['email_message_id']}"
 #message bodies can come in multiple types. most commonly, there are usually text/plain and a text/html parts. lets print out the first one's contents
-puts random_message_body.first['content']
+puts random_message_body.first[('content').to_i]
 
 #now lets set the read flag on this message
 #POST https://api.context.io/lite/users/:id/email_accounts/:label/folders/:folder/messages/:message_id/read
