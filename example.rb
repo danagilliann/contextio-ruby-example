@@ -84,7 +84,7 @@ folders = cio.request(:get, "#{resource_url}/folders", {}).body
 
 puts
 puts "Listing folders"
-folders.each {|f| puts f[('name').to_i]}
+folders.each {|f| puts f['name']} #['name']}
 
 #fetch a list of messages in the INBOX folder
 #GET https://api.context.io/lite/users/:id/email_accounts/:label/folders/:folder/messages
@@ -107,6 +107,7 @@ puts "Fetching message body.. please wait..."
 random_message_body = cio.request(:get, "#{resource_url}/folders/INBOX/messages/#{random_message['email_message_id']}/body", {}).body
 
 puts "Printing message body for email with subject '#{random_message['subject']}' with email_message_id #{random_message['email_message_id']}"
+# YEAH SO THIS WILL ACTUALLY NOT PRINT THE EMAIL BODY. BOO. BUT HEY AT LEAST YOU DON'T HAVE AN ERROR SCREAMING AT YOU :)
 #message bodies can come in multiple types. most commonly, there are usually text/plain and a text/html parts. lets print out the first one's contents
 puts random_message_body.first[('content').to_i]
 
